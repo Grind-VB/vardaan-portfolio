@@ -1,11 +1,19 @@
 import { notFound } from "next/navigation";
 import { projects } from "@/data/projects";
 
+type Props = {
+  params: {
+    slug: string;
+  };
+};
+
 export async function generateStaticParams() {
-  return projects.map((project) => ({ slug: project.slug }));
+  return projects.map((project) => ({
+    slug: project.slug,
+  }));
 }
 
-export default async function ProjectPage({ params }: { params: { slug: string } }) {
+export default async function ProjectPage({ params }: Props) {
   const project = projects.find((p) => p.slug === params.slug);
   if (!project) return notFound();
 
