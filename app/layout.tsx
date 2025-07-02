@@ -16,7 +16,7 @@ export const metadata = {
   title: "Vardaan Bazaz — Portfolio",
   description:
     "Developer portfolio of Vardaan Bazaz — building elegant, immersive web & mobile experiences.",
-  metadataBase: new URL("https://vardaanbazaz.vercel.app"), // ✅ Update if using custom domain
+  metadataBase: new URL("https://vardaanbazaz.vercel.app"), // Change this if using a custom domain
 
   openGraph: {
     title: "Vardaan Bazaz — Portfolio",
@@ -26,10 +26,10 @@ export const metadata = {
     siteName: "Vardaan's Portfolio",
     images: [
       {
-        url: "/og-image.png", // ✅ Place this in /public/
+        url: "/og-image.png",
         width: 1200,
         height: 630,
-        alt: "Vardaan Bazaz Portfolio Screenshot",
+        alt: "Vardaan Bazaz Portfolio Preview",
       },
     ],
     locale: "en_IN",
@@ -42,9 +42,10 @@ export const metadata = {
     description:
       "Projects, skills, and stories — in one interactive space.",
     images: ["/og-image.png"],
-    creator: "@yourhandle", // Optional
+    creator: "@yourhandle", // optional
   },
 };
+
 
 
 
