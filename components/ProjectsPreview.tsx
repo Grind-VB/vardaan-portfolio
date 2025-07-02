@@ -1,8 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import ProjectCard from "./ProjectCard";
-import { projects } from "@/data/projects"; // or inline dummyProjects
+import { projects } from "@/data/projects";
 
 export default function ProjectsPreview() {
   return (
@@ -19,12 +18,56 @@ export default function ProjectsPreview() {
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {projects.map((project) => (
-          <ProjectCard
+          <motion.div
             key={project.title}
-            title={project.title}
-            description={project.description}
-            tech={project.tech}
-          />
+            whileHover={{ scale: 1.03 }}
+            whileTap={{ scale: 0.97 }}
+            className="rounded-2xl border border-gray-700 bg-white dark:bg-gray-900 shadow-md p-6 transition-all duration-300 hover:shadow-lg"
+          >
+            <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-2">
+              {project.title}
+            </h3>
+
+            <p className="text-gray-600 dark:text-gray-300 mb-4">
+              {project.description}
+            </p>
+
+            <div className="flex flex-wrap gap-2 text-sm mb-4">
+              {project.tech.map((t) => (
+                <span
+                  key={t}
+                  className="bg-gray-200 dark:bg-gray-800 text-gray-800 dark:text-gray-200 px-2 py-1 rounded-md"
+                >
+                  {t}
+                </span>
+              ))}
+            </div>
+
+            <p className="text-sm text-gray-700 dark:text-gray-400 whitespace-pre-line mb-4">
+              {project.content}
+            </p>
+
+            <div className="mt-4 flex gap-4 flex-wrap">
+              {project.liveUrl && (
+                <a
+                  href={project.liveUrl}
+                  target="_blank"
+                  className="text-blue-600 dark:text-blue-400 underline"
+                >
+                  🌐 Live Site
+                </a>
+              )}
+              {project.repoUrl && (
+                <a
+                  href={project.repoUrl}
+                  target="_blank"
+                  className="text-blue-600 dark:text-blue-400 underline"
+                >
+                  🧠 GitHub Repo
+                </a>
+              )}
+            </div>
+          </motion.div>
         ))}
       </div>
     </motion.section>
