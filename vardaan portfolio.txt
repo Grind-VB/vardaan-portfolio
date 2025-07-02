@@ -1,0 +1,22 @@
+vardaan-portfolio
+
+| Layer      | Tech                             |
+| ---------- | -------------------------------- |
+| Framework  | Next.js (App Router)             |
+| Styling    | Tailwind CSS                     |
+| Fonts      | Inter + Playfair Display         |
+| Animations | Framer Motion                    |
+| Theme      | Light/Dark toggle (manual)       |
+| Components | Modular layout system            |
+| Hosting    | Vercel (Auto-deploy from GitHub) |
+
+| Component                                 | Purpose                               |
+| ----------------------------------------- | ------------------------------------- |
+| `Hero.tsx`                                | Animated welcome banner               |
+| `AmuseBouche.tsx`                         | Bite-sized intro / your vibe          |
+| `ProjectsPreview.tsx` + `ProjectCard.tsx` | Featured work                         |
+| `AboutSnapshot.tsx`                       | Warm short story + background info    |
+| `ContactSection.tsx`                      | Call to action + socials + email      |
+| `Layout.tsx`                              | Header, footer, and main layout shell |
+| `ThemeToggle.tsx`                         | Manual dark/light toggle              |
+
