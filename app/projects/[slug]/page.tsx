@@ -2,7 +2,7 @@ import { notFound } from "next/navigation";
 import { projects } from "@/data/projects";
 import type { Metadata } from "next";
 
-type Props = {
+type Params = {
   params: {
     slug: string;
   };
@@ -14,7 +14,7 @@ export function generateStaticParams() {
   }));
 }
 
-export function generateMetadata({ params }: Props): Metadata {
+export function generateMetadata({ params }: Params): Metadata {
   const project = projects.find((p) => p.slug === params.slug);
   if (!project) return {};
 
@@ -22,14 +22,23 @@ export function generateMetadata({ params }: Props): Metadata {
     title: `${project.title} – Vardaan Bazaz`,
     description: project.description,
     openGraph: {
+      images: [
+        {
+          url: "/og-image.png",
+          width: 1200,
+          height: 630,
+          alt: "Vardaan Bazaz Portfolio Screenshot",
+        },
+      ],
+    },
+    twitter: {
       images: ["/og-image.png"],
     },
   };
 }
 
-export default function ProjectPage({ params }: Props) {
+export default function ProjectPage({ params }: Params) {
   const project = projects.find((p) => p.slug === params.slug);
-
   if (!project) return notFound();
 
   return (
