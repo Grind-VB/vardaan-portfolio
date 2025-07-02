@@ -1,22 +1,36 @@
-import { notFound } from "next/navigation";
-import { projects } from "@/data/projects";
+"use client";
 
-export default async function ProjectPage(props: any) {
-  const slug = props?.params?.slug;
-  const project = projects.find((p) => p.slug === slug);
+import { motion } from "framer-motion";
 
-  if (!project) return notFound();
+type Props = {
+  title: string;
+  description: string;
+  tech: string[];
+};
 
+export default function ProjectCard({ title, description, tech }: Props) {
   return (
-    <div className="max-w-3xl mx-auto py-20 px-6">
-      <h1 className="text-4xl font-bold mb-4">{project.title}</h1>
-      <p className="mb-6 text-gray-700 dark:text-gray-300">{project.description}</p>
-      <h2 className="text-2xl font-semibold mb-2">Technologies:</h2>
-      <ul className="list-disc ml-6 text-gray-800 dark:text-gray-200">
-        {project.tech.map((tech: string) => (
-          <li key={tech}>{tech}</li>
+    <motion.div
+      whileHover={{ scale: 1.03 }}
+      whileTap={{ scale: 0.97 }}
+      className="rounded-2xl border border-gray-700 bg-white dark:bg-gray-900 shadow-md p-6 transition-all duration-300 hover:shadow-lg"
+    >
+      <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-2">
+        {title}
+      </h3>
+
+      <p className="text-gray-600 dark:text-gray-300 mb-4">{description}</p>
+
+      <div className="flex flex-wrap gap-2 text-sm">
+        {tech.map((t) => (
+          <span
+            key={t}
+            className="bg-gray-200 dark:bg-gray-800 text-gray-800 dark:text-gray-200 px-2 py-1 rounded-md"
+          >
+            {t}
+          </span>
         ))}
-      </ul>
-    </div>
+      </div>
+    </motion.div>
   );
 }

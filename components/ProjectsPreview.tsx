@@ -2,28 +2,7 @@
 
 import { motion } from "framer-motion";
 import ProjectCard from "./ProjectCard";
-
-const dummyProjects = [
-  {
-    slug: "farmconnect",
-    title: "FarmConnect",
-    description: "A Flutter app to help farmers connect with markets and storage.",
-    tech: ["Flutter", "Firebase", "Dart"],
-  },
-  {
-    slug: "agrybin",
-    title: "AgryBin",
-    description: "A smart grain bin tracker for agritech supply chains.",
-    tech: ["IoT", "React", "Next.js"],
-  },
-  {
-    slug: "portfolio-theme-park",
-    title: "Portfolio Theme Park",
-    description: "A Next.js portfolio with immersive storytelling animations.",
-    tech: ["Next.js", "Framer Motion", "Tailwind"],
-  },
-];
-
+import { projects } from "@/data/projects"; // or inline dummyProjects
 
 export default function ProjectsPreview() {
   return (
@@ -39,15 +18,13 @@ export default function ProjectsPreview() {
       </h2>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {dummyProjects.map((project) => (
+        {projects.map((project) => (
           <ProjectCard
-  key={project.slug}
-  slug={project.slug}
-  title={project.title}
-  description={project.description}
-  tech={project.tech}
-/>
-
+            key={project.title}
+            title={project.title}
+            description={project.description}
+            tech={project.tech}
+          />
         ))}
       </div>
     </motion.section>
