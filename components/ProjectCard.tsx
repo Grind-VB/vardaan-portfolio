@@ -1,16 +1,9 @@
 import { notFound } from "next/navigation";
 import { projects } from "@/data/projects";
 
-export async function generateStaticParams() {
-  return projects.map((project) => ({ slug: project.slug }));
-}
-
-export default async function ProjectPage({
-  params,
-}: {
-  params: { slug: string };
-}) {
-  const project = projects.find((p) => p.slug === params.slug);
+export default async function ProjectPage(props: any) {
+  const slug = props?.params?.slug;
+  const project = projects.find((p) => p.slug === slug);
 
   if (!project) return notFound();
 
@@ -20,7 +13,7 @@ export default async function ProjectPage({
       <p className="mb-6 text-gray-700 dark:text-gray-300">{project.description}</p>
       <h2 className="text-2xl font-semibold mb-2">Technologies:</h2>
       <ul className="list-disc ml-6 text-gray-800 dark:text-gray-200">
-        {project.tech.map((tech) => (
+        {project.tech.map((tech: string) => (
           <li key={tech}>{tech}</li>
         ))}
       </ul>
