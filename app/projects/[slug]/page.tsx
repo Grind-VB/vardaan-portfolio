@@ -7,11 +7,13 @@ export async function generateStaticParams() {
   }));
 }
 
-export default async function ProjectPage({
-  params,
-}: {
-  params: { slug: string };
-}) {
+type ProjectPageProps = {
+  params: {
+    slug: string;
+  };
+};
+
+export default function ProjectPage({ params }: ProjectPageProps) {
   const project = projects.find((p) => p.slug === params.slug);
 
   if (!project) return notFound();
