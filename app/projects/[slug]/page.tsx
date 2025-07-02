@@ -1,19 +1,33 @@
 import { notFound } from "next/navigation";
 import { projects } from "@/data/projects";
+import type { Metadata } from "next";
 
-export async function generateStaticParams() {
-  return projects.map((project) => ({
-    slug: project.slug,
-  }));
-}
-
-type ProjectPageProps = {
+type Props = {
   params: {
     slug: string;
   };
 };
 
-export default function ProjectPage({ params }: ProjectPageProps) {
+export function generateStaticParams() {
+  return projects.map((project) => ({
+    slug: project.slug,
+  }));
+}
+
+export function generateMetadata({ params }: Props): Metadata {
+  const project = projects.find((p) => p.slug === params.slug);
+  if (!project) return {};
+
+  return {
+    title: `${project.title} – Vardaan Bazaz`,
+    description: project.description,
+    openGraph: {
+      images: ["/og-image.png"],
+    },
+  };
+}
+
+export default function ProjectPage({ params }: Props) {
   const project = projects.find((p) => p.slug === params.slug);
 
   if (!project) return notFound();
@@ -39,20 +53,24 @@ export default function ProjectPage({ params }: ProjectPageProps) {
       </p>
 
       <div className="mt-8 flex gap-4">
-        <a
-          href={project.liveUrl}
-          target="_blank"
-          className="text-blue-600 dark:text-blue-400 underline"
-        >
-          🌐 Live Site
-        </a>
-        <a
-          href={project.repoUrl}
-          target="_blank"
-          className="text-blue-600 dark:text-blue-400 underline"
-        >
-          🧠 GitHub Repo
-        </a>
+        {project.liveUrl && (
+          <a
+            href={project.liveUrl}
+            target="_blank"
+            className="text-blue-600 dark:text-blue-400 underline"
+          >
+            🌐 Live Site
+          </a>
+        )}
+        {project.repoUrl && (
+          <a
+            href={project.repoUrl}
+            target="_blank"
+            className="text-blue-600 dark:text-blue-400 underline"
+          >
+            🧠 GitHub Repo
+          </a>
+        )}
       </div>
     </main>
   );
