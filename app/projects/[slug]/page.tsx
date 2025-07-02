@@ -2,19 +2,19 @@ import { notFound } from "next/navigation";
 import { projects } from "@/data/projects";
 import type { Metadata } from "next";
 
-type Params = {
-  params: {
-    slug: string;
-  };
-};
-
+// ✅ Remove all unnecessary constraints like PageProps or any imported types
 export function generateStaticParams() {
   return projects.map((project) => ({
     slug: project.slug,
   }));
 }
 
-export function generateMetadata({ params }: Params): Metadata {
+// ✅ Use raw object typing — Next.js will pass `params` directly
+export function generateMetadata({
+  params,
+}: {
+  params: { slug: string };
+}): Metadata {
   const project = projects.find((p) => p.slug === params.slug);
   if (!project) return {};
 
@@ -37,14 +37,21 @@ export function generateMetadata({ params }: Params): Metadata {
   };
 }
 
-export default function ProjectPage({ params }: Params) {
+// ✅ Page component itself
+export default function ProjectPage({
+  params,
+}: {
+  params: { slug: string };
+}) {
   const project = projects.find((p) => p.slug === params.slug);
   if (!project) return notFound();
 
   return (
     <main className="max-w-4xl mx-auto px-6 py-24">
       <h1 className="text-4xl font-bold font-serif mb-4">{project.title}</h1>
-      <p className="text-gray-700 dark:text-gray-300 mb-6">{project.description}</p>
+      <p className="text-gray-700 dark:text-gray-300 mb-6">
+        {project.description}
+      </p>
 
       <div className="flex flex-wrap gap-2 mb-6">
         {project.tech.map((t) => (
