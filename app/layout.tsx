@@ -14,16 +14,19 @@ const geistMono = Geist_Mono({
 
 export const metadata = {
   title: "Vardaan Bazaz — Portfolio",
-  description: "Developer portfolio of Vardaan Bazaz — building elegant, immersive web & mobile experiences.",
-  metadataBase: new URL("https://vardaanbazaz.vercel.app"), // Change this to your final deployed URL
+  description:
+    "Developer portfolio of Vardaan Bazaz — building elegant, immersive web & mobile experiences.",
+  metadataBase: new URL("https://vardaanbazaz.vercel.app"), // ✅ Update if using custom domain
+
   openGraph: {
     title: "Vardaan Bazaz — Portfolio",
-    description: "Explore projects, skills, and a story-driven journey through Vardaan's work.",
+    description:
+      "Explore projects, skills, and a story-driven journey through Vardaan's work.",
     url: "https://vardaanbazaz.vercel.app",
     siteName: "Vardaan's Portfolio",
     images: [
       {
-        url: "/og-image.png", // Add this image to /public
+        url: "/og-image.png", // ✅ Place this in /public/
         width: 1200,
         height: 630,
         alt: "Vardaan Bazaz Portfolio Screenshot",
@@ -32,14 +35,17 @@ export const metadata = {
     locale: "en_IN",
     type: "website",
   },
+
   twitter: {
     card: "summary_large_image",
     title: "Vardaan Bazaz — Portfolio",
-    description: "Projects, skills, and stories — in one interactive space.",
+    description:
+      "Projects, skills, and stories — in one interactive space.",
     images: ["/og-image.png"],
-    creator: "@yourhandle", // Optional: Your Twitter handle
+    creator: "@yourhandle", // Optional
   },
 };
+
 
 
 import { Inter, Playfair_Display } from "next/font/google";
